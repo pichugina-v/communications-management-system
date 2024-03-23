@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  cms_app:
+    container_name: cms_app
+    env_file:
+      - .env
+    environment:
+      DB_HOST: 'app_db'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: >
+      sh -c "
+        echo 'Starting project...' &&
+        python src/manage.py migrate
+        python src/manage.py runserver 0.0.0.0:8008
+      "
+    networks:
+      - prod_network
+    expose:
+      - 8008
+    ports:
+      - "8008:8008"
+    depends_on:
+      app_db:
+        condition: service_healthy
+
+
+  app_db:
+    container_name: app_db
+    image: postgres:15.1-alpine
+    volumes:
+      - psql:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    expose:
+      - 15432
+    ports:
+      - '15432:5432'
+    networks:
+      - prod_network
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${DB_USER} -d ${DB_NAME}'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+networks:
+  prod_network:
+    name: prod_network
+    driver: bridge
+
+volumes:
+  psql:
