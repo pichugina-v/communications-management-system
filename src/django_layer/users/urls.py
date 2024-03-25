@@ -1,6 +1,6 @@
 from django.urls import path
 
-from django_layer.users.api import CommunicationMethodsViewSet, DepartmentViewSet, UserViewSet
+from django_layer.users.api import PreferredContactMethodAPI, DepartmentViewSet, UserViewSet
 
 urlpatterns = [
     path('users/', UserViewSet.as_view({'get': 'list', 'post': 'create'}), name='clients-list-create'),
@@ -9,6 +9,5 @@ urlpatterns = [
     path('departments/', DepartmentViewSet.as_view({'get': 'list', 'post': 'create'}), name='departments-list-create'),
     path('departments/<int:pk>/', DepartmentViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}),
          name='departments-detail-update-delete'),
-    path('communication-methods/', CommunicationMethodsViewSet.as_view({'get': 'list'}),
-         name='communication-methods-detail'), 
+    path('communication-methods/', PreferredContactMethodAPI.as_view(), name='communication-methods-detail'),
 ]
