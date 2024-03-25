@@ -24,5 +24,5 @@ class DepartmentAdmin(admin.ModelAdmin):
     """
     Department model class for django admin site
     """
-    list_display = ('id', 'name')
-    search_fields = ['name']
+    list_display = ('name', 'internal_name')
+    search_fields = ['name', 'internal_name']

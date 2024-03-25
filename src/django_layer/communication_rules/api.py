@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from drf_spectacular.utils import extend_schema_view, extend_schema
+from drf_spectacular.utils import extend_schema
 from rest_framework.mixins import RetrieveModelMixin
 
 from django_layer.communication_rules.models import DepartmentCommunicationRule
@@ -10,9 +10,6 @@ from django_layer.communication_rules.serializers import DepartmentCommunication
 from django_layer.users.models import Department
 
 
-# @extend_schema_view(
-#     get_deprtment_communication_rule=extend_schema(description='text')
-# )
 class DepartmentCommunicationRuleViewSet(viewsets.ModelViewSet):
     queryset = DepartmentCommunicationRule.objects.all()
     serializer_class = DepartmentCommunicationRuleSerializer

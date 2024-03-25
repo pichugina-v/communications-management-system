@@ -8,7 +8,8 @@ from django_layer.users.managers import UserManager
 
 
 class Department(models.Model):
-    name = models.CharField(verbose_name=_("Название"), max_length=128)
+    name = models.CharField(verbose_name=_("Название"), max_length=128, primary_key=True)
+    internal_name = models.CharField(verbose_name=_("Внутреннее название"), max_length=128)
 
     class Meta:
         verbose_name = _('Подразделение')
