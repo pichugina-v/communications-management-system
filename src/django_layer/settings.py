@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,8 +18,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = tuple(os.environ['ALLOWED_HOSTS'].split(', '))
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = tuple(os.environ['ALLOWED_HOSTS'].split(', '))
 CSRF_TRUSTED_ORIGINS = list(os.environ['CSRF_TRUSTED_ORIGINS'].split(', '))
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -34,6 +37,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'drf_spectacular',
     'django_filters',
+    'corsheaders',
 
     'django_layer.users',
     'django_layer.api_clients',
@@ -48,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'django_layer.urls'
