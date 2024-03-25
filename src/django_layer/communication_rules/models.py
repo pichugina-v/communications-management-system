@@ -26,12 +26,12 @@ class DepartmentCommunicationRule(models.Model):
     preferred_mass_channels = ArrayField(
         models.CharField(max_length=20, choices=MASS_CONTACT_METHODS),
         size=4,
-        verbose_name=_("Предпочитаемый способ связи"),
+        verbose_name=_("Предпочитаемый способ массовой связи"),
     )
     preferred_personal_channels = ArrayField(
         models.CharField(max_length=20, choices=PERSONAL_CONTACT_METHODS),
         size=4,
-        verbose_name=_("Предпочитаемый способ связи"),
+        verbose_name=_("Предпочитаемый способ личной связи"),
     )
 
     class Meta:

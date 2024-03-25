@@ -58,4 +58,4 @@ class User(AbstractUser):
         verbose_name_plural = _('Пользователи')
 
     def __str__(self):
-        return self.full_name
+        return self.email

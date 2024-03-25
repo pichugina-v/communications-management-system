@@ -12,6 +12,7 @@ class DepartmentCommunicationRuleCreateSerializer(serializers.ModelSerializer):
 
 
 class DepartmentCommunicationRuleSerializer(serializers.ModelSerializer):
+    department = serializers.CharField(source="department.name", read_only=True)
     class Meta:
         model = DepartmentCommunicationRule
         fields = ("id", 'name', 'department', "description", "communication_limit", "preferred_mass_channels",
