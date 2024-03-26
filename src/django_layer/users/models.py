@@ -47,7 +47,8 @@ class User(AbstractUser):
         choices=Status.choices,
         default=Status.ACTIVE
     )
-    department = models.ForeignKey(to=Department, to_field="internal_name", verbose_name=_("Подразделение"), on_delete=models.PROTECT)
+    department = models.ForeignKey(to=Department, to_field='internal_name', verbose_name=_(
+        'Подразделение'), on_delete=models.PROTECT, null=True, blank=True)
 
     objects = UserManager()
 

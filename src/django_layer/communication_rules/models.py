@@ -14,7 +14,8 @@ class DepartmentCommunicationRule(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата создания'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Дата обновления'))
-    department = models.OneToOneField(to='users.Department', to_field='internal_name', verbose_name=_('Подразделение'), on_delete=models.PROTECT)
+    department = models.OneToOneField(to='users.Department', to_field='internal_name',
+                                      verbose_name=_('Подразделение'), on_delete=models.PROTECT)
     communication_limit = models.PositiveSmallIntegerField(verbose_name=_('Лимит коммуникаций'), default=0)
     preferred_mass_channels = ArrayField(
         models.CharField(max_length=20, choices=MASS_CONTACT_METHODS),

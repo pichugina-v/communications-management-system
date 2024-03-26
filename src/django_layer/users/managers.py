@@ -6,6 +6,9 @@ from django.contrib.auth.hashers import make_password
 
 class UserManager(BaseUserManager):
 
+    def create(self, **kwargs):
+        return self.create_user(**kwargs)
+
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('Email for user must be set.')

@@ -21,8 +21,10 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
                 ('communication_limit', models.PositiveSmallIntegerField(default=0, verbose_name='Лимит коммуникаций')),
-                ('preferred_mass_channels', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[('SMS', 'SMS'), ('Email', 'Email')], max_length=20), blank=True, size=4, verbose_name='Предпочитаемый способ массовой связи')),
-                ('preferred_personal_channels', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[('Push', 'Push'), ('Messenger', 'Messenger')], max_length=20), blank=True, size=4, verbose_name='Предпочитаемый способ личной связи')),
+                ('preferred_mass_channels', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[
+                 ('SMS', 'SMS'), ('Email', 'Email')], max_length=20), blank=True, size=4, verbose_name='Предпочитаемый способ массовой связи')),
+                ('preferred_personal_channels', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[
+                 ('Push', 'Push'), ('Messenger', 'Messenger')], max_length=20), blank=True, size=4, verbose_name='Предпочитаемый способ личной связи')),
             ],
             options={
                 'verbose_name': 'Правило коммуникации подразделений',
