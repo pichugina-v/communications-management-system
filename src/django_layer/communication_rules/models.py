@@ -21,13 +21,15 @@ class DepartmentCommunicationRule(models.Model):
         models.CharField(max_length=20, choices=MASS_CONTACT_METHODS),
         size=4,
         verbose_name=_('Предпочитаемый способ массовой связи'),
-        blank=True
+        blank=True,
+        null=True
     )
     preferred_personal_channels = ArrayField(
         models.CharField(max_length=20, choices=PERSONAL_CONTACT_METHODS),
         size=4,
         verbose_name=_('Предпочитаемый способ личной связи'),
-        blank=True
+        blank=True,
+        null=True
     )
 
     class Meta:

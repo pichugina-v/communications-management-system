@@ -12,5 +12,5 @@ urlpatterns = [
          DepartmentCommunicationRuleViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}),
          name='communication-rules-detail-update-delete'),
     path('communication-rules/<str:department>',
-         DepartmentCommunicationRuleByDepartmentViewSet.as_view({'get': 'retrieve'}))
+         DepartmentCommunicationRuleByDepartmentViewSet.as_view({'get': 'retrieve', 'put': 'update'}))
 ]

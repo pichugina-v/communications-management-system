@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from django_layer.communication_rules.models import DepartmentCommunicationRule
 from django_layer.users.models import Department, User
 from django_layer.users.serializers import (
     DepartmentCreateSerializer,
@@ -33,6 +34,10 @@ class DepartmentViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             return DepartmentCreateSerializer
         return self.serializer_class
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        DepartmentCommunicationRule.objects.create(department=instance)
 
 
 class PreferredContactMethodAPI(APIView):
