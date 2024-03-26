@@ -7,16 +7,16 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("id", 'full_name', 'email', "phone", "password", "status", "department", "preferred_contact_method")
-        extra_kwargs = {"password": {"write_only": True}}
+        fields = ('id', 'full_name', 'email', 'phone', 'password', 'status', 'department', 'preferred_contact_method')
+        extra_kwargs = {'password': {'write_only': True}}
 
 
 class UserSerializer(serializers.ModelSerializer):
-    department = serializers.CharField(source="department.name", read_only=True)
+    department = serializers.CharField(source='department.name', read_only=True)
 
     class Meta:
         model = User
-        fields = ("id", 'full_name', 'email', "phone", "status", "department", "preferred_contact_method")
+        fields = ('id', 'full_name', 'email', 'phone', 'status', 'department', 'preferred_contact_method')
 
 
 class DepartmentCreateSerializer(serializers.ModelSerializer):

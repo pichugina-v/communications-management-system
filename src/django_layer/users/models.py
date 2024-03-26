@@ -8,8 +8,8 @@ from django_layer.users.managers import UserManager
 
 
 class Department(models.Model):
-    name = models.CharField(verbose_name=_("Название"), max_length=128, primary_key=True)
-    internal_name = models.CharField(verbose_name=_("Внутреннее название"), max_length=128)
+    name = models.CharField(verbose_name=_('Название'), max_length=128)
+    internal_name = models.CharField(verbose_name=_('Внутреннее название'), max_length=128, primary_key=True)
 
     class Meta:
         verbose_name = _('Подразделение')
@@ -39,7 +39,7 @@ class User(AbstractUser):
     preferred_contact_method = ArrayField(
         models.CharField(max_length=20, choices=CONTACT_METHODS),
         size=4,
-        verbose_name=_("Предпочитаемый способ связи"),
+        verbose_name=_('Предпочитаемый способ связи'),
     )
     status = models.CharField(
         verbose_name=_('Статус'),
@@ -47,7 +47,7 @@ class User(AbstractUser):
         choices=Status.choices,
         default=Status.ACTIVE
     )
-    department = models.ForeignKey(to=Department, verbose_name=_("Подразделение"), on_delete=models.PROTECT, null=True)
+    department = models.ForeignKey(to=Department, to_field="internal_name", verbose_name=_("Подразделение"), on_delete=models.PROTECT)
 
     objects = UserManager()
 

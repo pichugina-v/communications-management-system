@@ -12,6 +12,6 @@ class StatisticsSerializer(serializers.Serializer):
         Check that date_from is before date_to.
         """
         if data['date_from'] > data['date_to']:
-            raise serializers.ValidationError("date_from must be before date_to")
+            raise serializers.ValidationError('date_from must be before date_to')
 
         return data

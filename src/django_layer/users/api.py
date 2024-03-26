@@ -1,11 +1,15 @@
+from django_filters import rest_framework as filters
 from rest_framework import viewsets
 from rest_framework.response import Response
-
-from django_filters import rest_framework as filters
 from rest_framework.views import APIView
 
 from django_layer.users.models import Department, User
-from django_layer.users.serializers import DepartmentCreateSerializer, DepartmentSerializer, UserSerializer, UserCreateSerializer
+from django_layer.users.serializers import (
+    DepartmentCreateSerializer,
+    DepartmentSerializer,
+    UserCreateSerializer,
+    UserSerializer,
+)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,6 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
+    lookup_field = 'internal_name'
 
     def get_serializer_class(self):
         if self.action == 'create':

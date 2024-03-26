@@ -9,4 +9,3 @@
 3. docker-compose up -d
 
 Графический интерфейс со всеми эндпоинтами будет доступен по адресу: http://localhost:8008/schema/swagger-ui/
-

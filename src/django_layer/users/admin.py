@@ -19,6 +19,7 @@ class UserAdmin(admin.ModelAdmin):
         ('is_active', admin.BooleanFieldListFilter),
     )
 
+
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
     """
